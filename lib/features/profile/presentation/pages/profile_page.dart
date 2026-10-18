@@ -149,6 +149,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 subtitle: 'View saved items',
                 onTap: () => context.push('/profile/wishlist'),
               ),
+              _MenuItem(
+                icon: Icons.storefront_outlined,
+                title: 'Merchant Portal',
+                subtitle: 'B2B dashboard, orders & quotes',
+                onTap: () => context.push('/b2b'),
+              ),
 
               SizedBox(height: customSpacing.lg),
               const _SectionHeader(title: 'Activity'),

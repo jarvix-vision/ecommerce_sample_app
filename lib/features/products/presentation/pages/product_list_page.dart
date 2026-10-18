@@ -427,59 +427,57 @@ class _ProductCardGrid extends StatelessWidget {
             // Content
             Padding(
               padding: EdgeInsets.all(customSpacing.md),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product['name'],
-                      style: theme.textTheme.titleSmall
-                          ?.copyWith(fontWeight: FontWeight.w600),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: customSpacing.xs),
-                    Row(
-                      children: [
-                        const Icon(Icons.star, size: 14, color: Colors.amber),
-                        SizedBox(width: customSpacing.xs),
-                        Text(
-                          product['rating'].toStringAsFixed(1),
-                          style: theme.textTheme.bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w500),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product['name'],
+                    style: theme.textTheme.titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w600),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: customSpacing.xs),
+                  Row(
+                    children: [
+                      const Icon(Icons.star, size: 14, color: Colors.amber),
+                      SizedBox(width: customSpacing.xs),
+                      Text(
+                        product['rating'].toStringAsFixed(1),
+                        style: theme.textTheme.bodySmall
+                            ?.copyWith(fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(width: customSpacing.xs),
+                      Text(
+                        '(${product['reviews']})',
+                        style: theme.textTheme.bodySmall
+                            ?.copyWith(color: colorScheme.onSurfaceVariant),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: customSpacing.sm),
+                  Row(
+                    children: [
+                      Text(
+                        '\$${product['price'].toStringAsFixed(2)}',
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: colorScheme.primary,
                         ),
-                        SizedBox(width: customSpacing.xs),
+                      ),
+                      if (hasDiscount) ...[
+                        SizedBox(width: customSpacing.sm),
                         Text(
-                          '(${product['reviews']})',
-                          style: theme.textTheme.bodySmall
-                              ?.copyWith(color: colorScheme.onSurfaceVariant),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: customSpacing.sm),
-                    Row(
-                      children: [
-                        Text(
-                          '\$${product['price'].toStringAsFixed(2)}',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            color: colorScheme.primary,
+                          '\$${product['originalPrice'].toStringAsFixed(2)}',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            color: colorScheme.onSurfaceVariant,
                           ),
                         ),
-                        if (hasDiscount) ...[
-                          SizedBox(width: customSpacing.sm),
-                          Text(
-                            '\$${product['originalPrice'].toStringAsFixed(2)}',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              decoration: TextDecoration.lineThrough,
-                              color: colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ],
                       ],
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -504,6 +502,12 @@ class _ProductCardList extends StatelessWidget {
 
     final hasDiscount = product['originalPrice'] != null &&
         product['originalPrice'] > product['price'];
+    final discountPercent = hasDiscount
+        ? ((product['originalPrice'] - product['price']) /
+                product['originalPrice'] *
+                100)
+            .round()
+        : 0;
 
     return InkWell(
       onTap: onTap,
@@ -511,7 +515,7 @@ class _ProductCardList extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(
             horizontal: customSpacing.lg, vertical: customSpacing.sm),
-        padding: EdgeInsets.all(customSpacing.md),
+        padding: EdgeInsets.all(customSpacing.sm),
         decoration: BoxDecoration(
           color: colorScheme.surface,
           borderRadius: BorderRadius.circular(customRadius.lg),
@@ -521,19 +525,44 @@ class _ProductCardList extends StatelessWidget {
         child: Row(
           children: [
             // Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(customRadius.md),
-              child: product['image'] != null
-                  ? Image.network(product['image'],
-                      width: 100, height: 100, fit: BoxFit.cover)
-                  : Container(
-                      width: 100,
-                      height: 100,
-                      color: colorScheme.surfaceContainerHighest,
-                      child: Center(
-                          child: Icon(Icons.image,
-                              size: 32, color: colorScheme.onSurfaceVariant)),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(customRadius.md),
+                  child: product['image'] != null
+                      ? Image.network(product['image'],
+                          width: 100, height: 100, fit: BoxFit.cover)
+                      : Container(
+                          width: 100,
+                          height: 100,
+                          color: colorScheme.surfaceContainerHighest,
+                          child: Center(
+                              child: Icon(Icons.image,
+                                  size: 32, color: colorScheme.onSurfaceVariant)),
+                        ),
+                ),
+                if (hasDiscount)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: customSpacing.sm,
+                          vertical: customSpacing.xs),
+                      decoration: BoxDecoration(
+                        color: colorScheme.error,
+                        borderRadius: BorderRadius.circular(customRadius.full),
+                      ),
+                      child: Text(
+                        '-$discountPercent%',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onError,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
+                  ),
+              ],
             ),
             SizedBox(width: customSpacing.md),
             // Content

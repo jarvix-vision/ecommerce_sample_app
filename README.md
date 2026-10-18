@@ -41,6 +41,11 @@ Enterprise e-commerce Flutter app using **Riverpod** state management, **GoRoute
 |:---:|:---:|:---:|
 | ![Cart Tablet](screenshots/cart_tablet.png) | ![Cart Empty Tablet](screenshots/cart_tablet_empty.png) | ![Orders Tablet](screenshots/order_tablet.png) |
 
+**B2B / Merchant**
+| Merchant Portal | Merchant Products | Merchant Orders |
+|:---:|:---:|:---:|
+| ![Merchant Portal](screenshots/merchant_portal.png) | ![Merchant Products](screenshots/merchant_products.png) | ![Merchant Orders](screenshots/b2b%20orders.png) |
+
 ---
 
 ## Architecture

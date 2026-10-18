@@ -177,6 +177,40 @@ class HomePage extends ConsumerWidget {
           ),
         ),
 
+        // Merchant Portal entry
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: customSpacing.lg, vertical: customSpacing.md),
+            child: InkWell(
+              onTap: () => context.push('/b2b'),
+              borderRadius: BorderRadius.circular(customRadius.lg),
+              child: Container(
+                padding: EdgeInsets.all(customSpacing.lg),
+                decoration: BoxDecoration(
+                  color: colorScheme.primaryContainer.withValues(alpha: 0.4),
+                  borderRadius: BorderRadius.circular(customRadius.lg),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.storefront_outlined, color: colorScheme.primary, size: 32),
+                    SizedBox(width: customSpacing.md),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Merchant Portal (B2B)', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                          Text('Bulk orders, quotes & invoices', style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant)),
+                        ],
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+
         // Bottom padding
         SliverToBoxAdapter(child: SizedBox(height: customSpacing.xxxl)),
       ],

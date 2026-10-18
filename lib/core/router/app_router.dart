@@ -24,6 +24,20 @@ import '../../features/search/presentation/pages/search_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
+import '../../features/b2b/presentation/pages/merchant_dashboard_page.dart';
+import '../../features/b2b/presentation/pages/merchant_orders_page.dart';
+import '../../features/b2b/presentation/pages/merchant_products_page.dart';
+import '../../features/b2b/presentation/pages/merchant_quotes_page.dart';
+import '../../features/b2b/presentation/pages/merchant_invoices_page.dart';
+import '../../features/b2b/presentation/pages/merchant_customers_page.dart';
+import '../../features/b2b/presentation/pages/merchant_product_detail_page.dart';
+import '../../features/b2b/presentation/pages/merchant_cart_page.dart';
+import '../../features/b2b/presentation/pages/merchant_checkout_page.dart';
+import '../../features/b2b/presentation/pages/merchant_order_detail_page.dart';
+import '../../features/b2b/presentation/pages/merchant_company_profile_page.dart';
+import '../../features/b2b/presentation/pages/merchant_approvals_page.dart';
+import '../../features/b2b/presentation/pages/merchant_shipments_page.dart';
+import '../../features/b2b/presentation/pages/merchant_reports_page.dart';
 import '../../shared/widgets/main_scaffold.dart';
 
 part 'app_router.g.dart';
@@ -173,6 +187,88 @@ GoRouter appRouter(AppRouterRef ref) {
         builder: (context, state) => VerifyEmailPage(
           email: state.uri.queryParameters['email'] ?? '',
         ),
+      ),
+      // B2B / Merchant portal routes
+      GoRoute(
+        path: '/b2b',
+        name: 'b2b-dashboard',
+        builder: (context, state) => const MerchantDashboardPage(),
+        routes: [
+          GoRoute(
+            path: 'orders',
+            name: 'b2b-orders',
+            builder: (context, state) => const MerchantOrdersPage(),
+          ),
+          GoRoute(
+            path: 'products',
+            name: 'b2b-products',
+            builder: (context, state) => const MerchantProductsPage(),
+          ),
+          GoRoute(
+            path: 'quotes',
+            name: 'b2b-quotes',
+            builder: (context, state) => const MerchantQuotesPage(),
+          ),
+          GoRoute(
+            path: 'invoices',
+            name: 'b2b-invoices',
+            builder: (context, state) => const MerchantInvoicesPage(),
+          ),
+          GoRoute(
+            path: 'customers',
+            name: 'b2b-customers',
+            builder: (context, state) => const MerchantCustomersPage(),
+          ),
+          GoRoute(
+            path: 'product/:id',
+            name: 'b2b-product-detail',
+            builder: (context, state) => MerchantProductDetailPage(
+              productId: state.pathParameters['id']!,
+            ),
+          ),
+          GoRoute(
+            path: 'cart',
+            name: 'b2b-cart',
+            builder: (context, state) => const MerchantCartPage(),
+          ),
+          GoRoute(
+            path: 'checkout',
+            name: 'b2b-checkout',
+            builder: (context, state) => const MerchantCheckoutPage(),
+          ),
+          GoRoute(
+            path: 'order/:id',
+            name: 'b2b-order-detail',
+            builder: (context, state) => MerchantOrderDetailPage(
+              orderId: state.pathParameters['id']!,
+            ),
+          ),
+          GoRoute(
+            path: 'company',
+            name: 'b2b-company',
+            builder: (context, state) => const MerchantCompanyProfilePage(),
+          ),
+          GoRoute(
+            path: 'approvals',
+            name: 'b2b-approvals',
+            builder: (context, state) => const MerchantApprovalsPage(),
+          ),
+          GoRoute(
+            path: 'shipments',
+            name: 'b2b-shipments',
+            builder: (context, state) => const MerchantShipmentsPage(),
+          ),
+          GoRoute(
+            path: 'reports',
+            name: 'b2b-reports',
+            builder: (context, state) => const MerchantReportsPage(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: '/merchant',
+        name: 'merchant-dashboard',
+        redirect: (context, state) => '/b2b',
       ),
     ],
     errorBuilder: (context, state) => Scaffold(

@@ -209,10 +209,10 @@ class SecondaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(customRadius.md),
           ),
         ),
+
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
             if (leadingIcon != null) ...[
               Icon(leadingIcon, size: fontSize * 1.2),
@@ -304,7 +304,7 @@ class GhostButton extends StatelessWidget {
 
     return SizedBox(
       width: isFullWidth ? double.infinity : null,
-      height: isFullWidth ? height : null,
+      height: 65,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
@@ -315,26 +315,24 @@ class GhostButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(customRadius.md),
           ),
         ),
-        child: Expanded(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (leadingIcon != null) ...[
-                Icon(leadingIcon, size: fontSize * 1.2),
-                SizedBox(width: customSpacing.sm),
-              ],
-              Text(
-                label,
-                style:
-                    TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500),
-              ),
-              if (trailingIcon != null) ...[
-                SizedBox(width: customSpacing.sm),
-                Icon(trailingIcon, size: fontSize * 1.2),
-              ],
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (leadingIcon != null) ...[
+              Icon(leadingIcon, size: fontSize * 1.2),
+              SizedBox(width: customSpacing.sm),
             ],
-          ),
+            Text(
+              label,
+              style:
+                  TextStyle(fontSize: fontSize, fontWeight: FontWeight.w500),
+            ),
+            if (trailingIcon != null) ...[
+              SizedBox(width: customSpacing.sm),
+              Icon(trailingIcon, size: fontSize * 1.2),
+            ],
+          ],
         ),
       ),
     );

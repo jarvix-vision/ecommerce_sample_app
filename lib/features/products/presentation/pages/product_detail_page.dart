@@ -91,7 +91,6 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
                 color: colorScheme.surface.withValues(alpha: 0.9),
                 shape: BoxShape.circle,
               ),
-
               child: InkWell(
                 child: const Icon(Icons.arrow_back),
                 onTap: () => context.pop(),
@@ -104,19 +103,11 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
                   color: colorScheme.surface.withValues(alpha: 0.9),
                   shape: BoxShape.circle,
                 ),
-                // child: IconButton(
-                //   icon: Icon(
-                //       _isInWishlist ? Icons.favorite : Icons.favorite_border,
-                //       color: _isInWishlist ? colorScheme.error : null),
-                //   onPressed: () =>
-                //       setState(() => _isInWishlist = !_isInWishlist),
-                // ),
                 child: InkWell(
                   child: Icon(
                       _isInWishlist ? Icons.favorite : Icons.favorite_border,
                       color: _isInWishlist ? colorScheme.error : null),
-                  onTap: () =>
-                      setState(() => _isInWishlist = !_isInWishlist),
+                  onTap: () => setState(() => _isInWishlist = !_isInWishlist),
                 ),
               ),
             ],
@@ -177,6 +168,7 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
                 children: [
                   // Rating & Title
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Column(
@@ -193,27 +185,32 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
                                       ?.copyWith(fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(width: customSpacing.sm),
-                                Text(
-                                  '(${_product['reviews']} reviews)',
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                      color: colorScheme.onSurfaceVariant),
-                                ),
+                                Expanded(
+                                  child: Text(
+                                    '(${_product['reviews']} reviews)',
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                        color: colorScheme.onSurfaceVariant),
+                                  ),
+                                )
                               ],
                             ),
                             SizedBox(height: customSpacing.xs),
                             Text(
                               _product['name'],
+                              maxLines: 2,
                               style: theme.textTheme.headlineSmall
-                                  ?.copyWith(fontWeight: FontWeight.w700),
+                                  ?.copyWith(fontWeight: FontWeight.w700,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),
                       ),
                       // Share button
-                      IconButton(
-                        icon: const Icon(Icons.share_outlined),
-                        onPressed: () {},
-                      ),
+                     IconButton(
+                       icon: const Icon(Icons.share_outlined),
+                       onPressed: () {},
+                     ),
                     ],
                   ),
                   SizedBox(height: customSpacing.lg),
@@ -401,7 +398,7 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
       ),
       // Bottom Bar
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(customSpacing.lg),
+        padding: EdgeInsets.all(customSpacing.md),
         decoration: BoxDecoration(
           color: colorScheme.surface,
           border: Border(top: BorderSide(color: colorScheme.outlineVariant)),
@@ -439,7 +436,6 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
             ],
           ),
         ),
-
       ),
     );
   }

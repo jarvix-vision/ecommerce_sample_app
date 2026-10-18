@@ -84,7 +84,7 @@ class _CartPageState extends ConsumerState<CartPage> {
 
                 // Promo Code
                 Container(
-                  padding: EdgeInsets.all(customSpacing.lg),
+                  padding: EdgeInsets.all(customSpacing.md),
                   decoration: BoxDecoration(
                     color: colorScheme.surface,
                     border: Border(
