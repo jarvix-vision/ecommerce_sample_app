@@ -2,7 +2,7 @@
 
 ## Overview
 
-Enterprise e-commerce Flutter app using **Riverpod** state management, **GoRouter** navigation, and **Dio** networking. Features a full design token system with light/dark mode, 11 feature modules, and 20+ screens.
+Enterprise e-commerce Flutter app using **Riverpod** state management, **GoRouter** navigation, and **Dio** networking. Features a full design token system with light/dark mode, 11 feature modules, and 20+ screens. Supports both **B2C** shopping and a **B2B Merchant Portal** (bulk orders, quotes, invoices, customers, shipments, approvals, reports).
 
 ---
 
@@ -45,6 +45,24 @@ Enterprise e-commerce Flutter app using **Riverpod** state management, **GoRoute
 | Merchant Portal | Merchant Products | Merchant Orders |
 |:---:|:---:|:---:|
 | ![Merchant Portal](screenshots/merchant_portal.png) | ![Merchant Products](screenshots/merchant_products.png) | ![Merchant Orders](screenshots/b2b%20orders.png) |
+
+---
+
+## B2B Merchant Portal
+
+Merchant-focused screens mirroring the B2C experience with bulk pricing, MOQ, purchase orders, credit terms, approvals, shipments, and analytics:
+
+- Merchant Dashboard (KPIs, quick actions, recent orders)
+- Bulk Catalog & Product Detail (tier pricing, MOQ)
+- Bulk Cart & Checkout (PO number, payment terms)
+- Orders & Order Detail
+- Quotes & RFQs
+- Invoices
+- Customers
+- Company Profile
+- Approvals
+- Shipments
+- Reports & Analytics
 
 ---
 
