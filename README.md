@@ -1,4 +1,4 @@
-# Flutter E-Commerce App — Developer Guide(Still Dev)
+# Flutter E-Commerce App (B2B & B2C) — Developer Guide(Still Dev)
 
 ## Overview
 
