@@ -31,9 +31,17 @@ Enterprise e-commerce Flutter app using **Riverpod** state management, **GoRoute
 
 
 **B2B / Merchant**
-| Merchant Portal | Merchant Products | Merchant Orders |
-|:---:|:---:|:---:|
-| ![Merchant Portal](screenshots/merchant_portal.png) | ![Merchant Products](screenshots/merchant_products.png) | ![Merchant Orders](screenshots/b2b%20orders.png) |
+| Merchant Portal | Merchant Products | Merchant Orders | Quotes & RFQs |
+|:---:|:---:|:---:|:---:|
+| ![Merchant Portal](screenshots/merchant_portal.png) | ![Merchant Products](screenshots/merchant_products.png) | ![Merchant Orders](screenshots/b2b%20orders.png) | ![Quotes & RFQs](screenshots/quotes%26rfqs.png) |
+
+| Invoices | Customers | Company Profile | Approvals |
+|:---:|:---:|:---:|:---:|
+| ![Invoices](screenshots/invoices.png) | ![Customers](screenshots/customers.png) | ![Company Profile](screenshots/company_profile.png) | ![Approvals](screenshots/approvals.png) |
+
+| Shipments | Reports & Analytics |
+|:---:|:---:|
+| ![Shipments](screenshots/shipments.png) | ![Reports & Analytics](screenshots/reports%26analytics.png) |
 
 ---
 
